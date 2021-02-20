@@ -26,7 +26,6 @@ import com.example.learningcompose.viewmodel.CounterViewModel
 @Composable
 fun Counter() {
     val viewModel: CounterViewModel = viewModel()
-    val state = viewModel.amount.observeAsState()
     Column(
             modifier = Modifier
                     .fillMaxWidth()
@@ -35,7 +34,7 @@ fun Counter() {
             horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text(text = "Hello ${state.value}!",
+        Text(text = "Hello ${viewModel.amount}!",
                 color = Color.Black,
                 fontSize = 20.sp,
                 modifier = Modifier
