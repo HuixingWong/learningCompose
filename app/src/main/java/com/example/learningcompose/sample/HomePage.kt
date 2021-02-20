@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Home(
-        anim: () -> Unit,
+        recyclerView: () -> Unit,
         counter: () -> Unit,
         edit: () -> Unit,
 ) {
@@ -25,8 +25,8 @@ fun Home(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = anim, modifier = Modifier.padding(16.dp)) {
-            Text("Anim")
+        Button(onClick = recyclerView, modifier = Modifier.padding(16.dp)) {
+            Text("recyclerView")
         }
 
         Button(onClick = counter, modifier = Modifier.padding(16.dp)) {
