@@ -30,8 +30,7 @@ fun Counter() {
     Column(
             modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight()
-                    .background(Color.Green),
+                    .fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -19,8 +19,7 @@ fun Home(
     ScrollableColumn(
             modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight()
-                    .background(Color.Green),
+                    .fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
     ) {
