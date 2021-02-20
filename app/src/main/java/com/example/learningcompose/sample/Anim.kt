@@ -59,7 +59,7 @@ fun ItemCardView(index: Int) {
                     .absoluteOffset(x = listItemTransition[listItemAnimationDefinition.slideValue])
     ) {
         Text(
-                text = "I'm a card from Jetpack Compose",
+                text = "I'm a card from Jetpack Compose $index",
                 textAlign = TextAlign.Center
         )
     }
