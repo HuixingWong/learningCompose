@@ -14,10 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
-import com.example.learningcompose.sample.Anim
-import com.example.learningcompose.sample.Counter
-import com.example.learningcompose.sample.Edit
-import com.example.learningcompose.sample.Home
+import com.example.learningcompose.sample.*
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
 val LocalActivity = staticCompositionLocalOf<Activity>()
@@ -35,8 +32,8 @@ class MainActivity : AppCompatActivity() {
                             Crossfade(targetState = "home") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Home(
-                                            anim = {
-                                                navController.navigate("anim")
+                                            recyclerView = {
+                                                navController.navigate("recyclerView")
                                             },
                                             counter = {
                                                 navController.navigate("counter")
@@ -50,10 +47,10 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
 
-                        composable("anim") {
-                            Crossfade(targetState = "anim") {
+                        composable("recyclerView") {
+                            Crossfade(targetState = "recyclerView") {
                                 Surface(color = MaterialTheme.colors.background) {
-                                    Anim()
+                                    RecyclerViewTest()
                                 }
                             }
                         }
@@ -83,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun Content() {
 //    Counter()
-    Anim()
+    RecyclerViewTest()
 }
 
 @Preview(showBackground = true)
