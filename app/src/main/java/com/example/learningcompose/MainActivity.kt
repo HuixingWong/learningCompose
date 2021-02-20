@@ -1,14 +1,14 @@
 package com.example.learningcompose
 
+import android.app.Activity
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.Crossfade
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.Providers
-import androidx.compose.runtime.staticAmbientOf
-import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,7 +20,7 @@ import com.example.learningcompose.sample.Edit
 import com.example.learningcompose.sample.Home
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
-val LocalActivity = staticAmbientOf<AppCompatActivity>()
+val LocalActivity = staticCompositionLocalOf<Activity>()
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,18 +32,18 @@ class MainActivity : AppCompatActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "home") {
                         composable("home") {
-                            Crossfade(current = "home") {
+                            Crossfade(targetState = "home") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Home(
-                                        anim = {
-                                            navController.navigate("anim")
-                                        },
-                                        counter = {
-                                            navController.navigate("counter")
-                                        },
-                                        edit = {
-                                            navController.navigate("edit")
-                                        }
+                                            anim = {
+                                                navController.navigate("anim")
+                                            },
+                                            counter = {
+                                                navController.navigate("counter")
+                                            },
+                                            edit = {
+                                                navController.navigate("edit")
+                                            }
 
                                     )
                                 }
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         composable("anim") {
-                            Crossfade(current = "anim") {
+                            Crossfade(targetState = "anim") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Anim()
                                 }
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         composable("counter") {
-                            Crossfade(current = "counter") {
+                            Crossfade(targetState = "counter") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Counter()
                                 }
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         composable("edit") {
-                            Crossfade(current = "edit") {
+                            Crossfade(targetState = "edit") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Edit()
                                 }
