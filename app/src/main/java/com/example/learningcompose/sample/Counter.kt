@@ -1,5 +1,6 @@
 package com.example.learningcompose.sample
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -20,12 +20,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.viewModel
-import com.example.learningcompose.MyApp
+import com.example.learningcompose.LocalActivity
 import com.example.learningcompose.viewmodel.CounterViewModel
 
 @Composable
 fun Counter() {
     val viewModel: CounterViewModel = viewModel()
+    val context = LocalActivity.current
     Column(
             modifier = Modifier
                     .fillMaxWidth()
@@ -52,9 +53,7 @@ fun Counter() {
 
                         })
                         .clickable {
-                            Toast
-                                    .makeText(MyApp.context, "haha", Toast.LENGTH_SHORT)
-                                    .show()
+                            showMessage(context, "haha")
                         }
         )
         Button(onClick = {
@@ -68,4 +67,7 @@ fun Counter() {
             Text(text = "减1")
         }
     }
+}
+fun showMessage(context: Context, message:String){
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
