@@ -2,6 +2,7 @@ package com.example.learningcompose
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.Crossfade
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -25,25 +26,34 @@ class MainActivity : AppCompatActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "home") {
                     composable("home") {
-                        Surface(color = MaterialTheme.colors.background) {
-                            Home(
-                                    anim = {
-                                        navController.navigate("anim")
-                                    },
-                                    counter = {
-                                        navController.navigate("counter")
-                                    }
-                            )
+                        Crossfade(current = "home") {
+                            Surface(color = MaterialTheme.colors.background) {
+                                Home(
+                                        anim = {
+                                            navController.navigate("anim")
+                                        },
+                                        counter = {
+                                            navController.navigate("counter")
+                                        }
+                                )
+                            }
                         }
                     }
+                    
                     composable("anim") {
-                        Surface(color = MaterialTheme.colors.background) {
-                            Anim()
+                        Crossfade(current = "anim") {
+                            Surface(color = MaterialTheme.colors.background) {
+                                Anim()
+                            }
                         }
+
                     }
+
                     composable("counter") {
-                        Surface(color = MaterialTheme.colors.background) {
-                            Counter()
+                        Crossfade(current = "counter") {
+                            Surface(color = MaterialTheme.colors.background) {
+                                Counter()
+                            }
                         }
                     }
                 }
