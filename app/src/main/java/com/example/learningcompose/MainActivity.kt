@@ -7,6 +7,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.learningcompose.sample.Anim
 import com.example.learningcompose.sample.Counter
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
@@ -26,7 +27,8 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun Content() {
-    Counter()
+//    Counter()
+    Anim()
 }
 
 @Preview(showBackground = true)
