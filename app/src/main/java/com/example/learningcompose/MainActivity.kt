@@ -32,16 +32,18 @@ class MainActivity : AppCompatActivity() {
                             Crossfade(targetState = "home") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Home(
-                                            recyclerView = {
-                                                navController.navigate("recyclerView")
-                                            },
-                                            counter = {
-                                                navController.navigate("counter")
-                                            },
-                                            edit = {
-                                                navController.navigate("edit")
-                                            }
-
+                                        recyclerView = {
+                                            navController.navigate("recyclerView")
+                                        },
+                                        counter = {
+                                            navController.navigate("counter")
+                                        },
+                                        edit = {
+                                            navController.navigate("edit")
+                                        },
+                                        anim = {
+                                            navController.navigate("anim")
+                                        }
                                     )
                                 }
                             }
@@ -67,6 +69,14 @@ class MainActivity : AppCompatActivity() {
                             Crossfade(targetState = "edit") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     Edit()
+                                }
+                            }
+                        }
+
+                        composable("anim") {
+                            Crossfade(targetState = "anim") {
+                                Surface(color = MaterialTheme.colors.background) {
+                                    SlideInOutSample()
                                 }
                             }
                         }
