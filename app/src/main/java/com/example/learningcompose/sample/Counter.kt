@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -15,11 +16,10 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.gesture.scrollorientationlocking.Orientation
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.viewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.learningcompose.LocalActivity
 import com.example.learningcompose.viewmodel.CounterViewModel
 
@@ -48,11 +48,7 @@ fun Counter() {
                             drawRect(Color.Black, topLeft = Offset(20f, 20f),
                                     size = Size(20f, 20f))
                             this.drawContent()
-                        }
-                        .draggable(orientation = Orientation.Horizontal, onDrag = {
-
-                        })
-                        .clickable {
+                        }.clickable {
                             showMessage(context, "haha")
                         }
         )

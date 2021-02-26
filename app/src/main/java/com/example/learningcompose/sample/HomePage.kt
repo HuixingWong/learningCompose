@@ -18,7 +18,7 @@ fun Home(
     anim: () -> Unit,
 ) {
 
-    rememberScrollState(0f)
+    rememberScrollState(0)
     // use `item` for separate elements like headers
     // and `items` for lists of identical elements
     LazyColumn(

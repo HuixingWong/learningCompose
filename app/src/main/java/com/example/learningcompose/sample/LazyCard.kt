@@ -10,7 +10,6 @@ import androidx.compose.animation.slideOut
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Card
@@ -69,7 +68,7 @@ fun RecyclerViewTest() {
         for (i in 0..20) {
             item {
                 ItemCardView(index = i)
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
             }
 
         }
