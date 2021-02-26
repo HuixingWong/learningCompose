@@ -2,11 +2,9 @@ package com.example.learningcompose.sample
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideIn
-import androidx.compose.animation.slideOut
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,7 +25,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ItemCardView(index: Int) {
 
-    var visible = remember(calculation = {mutableStateOf(true)})
+    val visible = remember(calculation = {mutableStateOf(true)})
     AnimatedVisibility(
         visible.value,
         enter = slideIn(
@@ -35,15 +33,9 @@ fun ItemCardView(index: Int) {
             // 100 (pixels) below the content position, which results in a simultaneous slide up
             // and slide left.
             { fullSize -> IntOffset(fullSize.width / 4, 100) },
-            tween(1000, easing = LinearOutSlowInEasing)
+            tween(300, easing = LinearOutSlowInEasing)
         ),
-        exit = slideOut(
-            // The offset can be entirely independent of the size of the content. This specifies
-            // a target offset 180 pixels to the left of the content, and 50 pixels below. This will
-            // produce a slide-left combined with a slide-down.
-            { IntOffset(-180, 50) },
-            tween(1000, easing = FastOutSlowInEasing)
-        )
+        initiallyVisible = false
     ) {
         Card(
             modifier = Modifier
