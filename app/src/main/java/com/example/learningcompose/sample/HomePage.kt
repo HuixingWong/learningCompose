@@ -2,6 +2,7 @@ package com.example.learningcompose.sample
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,30 +17,38 @@ fun Home(
     edit: () -> Unit,
     anim: () -> Unit,
 ) {
+
     rememberScrollState(0f)
+    // use `item` for separate elements like headers
+    // and `items` for lists of identical elements
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(),
+            .fillMaxHeight().padding(top = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-    // use `item` for separate elements like headers
+        // use `item` for separate elements like headers
         // and `items` for lists of identical elements
-        item(fun ColumnScope.() {
+        item {
             Button(onClick = recyclerView, modifier = Modifier.padding(16.dp)) {
                 Text("recyclerView")
             }
-
+        }
+        item {
             Button(onClick = counter, modifier = Modifier.padding(16.dp)) {
                 Text("counter")
             }
-
+        }
+        item {
             Button(onClick = edit, modifier = Modifier.padding(16.dp)) {
                 Text("stateTest")
             }
+        }
+        item {
             Button(onClick = anim, modifier = Modifier.padding(16.dp)) {
                 Text("AnimTest")
             }
-        })
+        }
+
     }
 }

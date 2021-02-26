@@ -40,6 +40,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -205,6 +208,10 @@ fun SlideInOutSample() {
                 .background(Color.Red)
                 .clickable {
                     visible = !visible
+                    GlobalScope.launch {
+                        delay(2000)
+                        visible = !visible
+                    }
                 })
     }
 }
