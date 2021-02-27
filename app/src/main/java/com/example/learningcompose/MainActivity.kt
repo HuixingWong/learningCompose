@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
                                         },
                                         anim = {
                                             navController.navigate("anim")
+                                        },
+                                        coplexList = {
+                                            navController.navigate("coplexList")
                                         }
                                     )
                                 }
@@ -76,6 +79,14 @@ class MainActivity : AppCompatActivity() {
                             Crossfade(targetState = "anim") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     SlideInOutSample()
+                                }
+                            }
+                        }
+
+                        composable("coplexList") {
+                            Crossfade(targetState = "coplexList") {
+                                Surface(color = MaterialTheme.colors.background) {
+                                    ComPlexList()
                                 }
                             }
                         }
