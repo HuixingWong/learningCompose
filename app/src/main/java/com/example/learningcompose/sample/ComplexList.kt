@@ -20,23 +20,14 @@ fun ComPlexList() {
 
     AnimatedVisibility(visible = true, enter = commonEnter, exit = commonOut) {
         LazyColumn {
-            item {
-                LazyRow {
-                    for (i in 0..20) {
-                        item {
-                            ItemCardView(index = i, Modifier.balance())
-                            Spacer(modifier = Modifier.height(8.dp))
-                        }
-                    }
-                }
-            }
-
-            item {
-                LazyRow {
-                    for (i in 0..20) {
-                        item {
-                            ItemCardView(index = i, Modifier.balance())
-                            Spacer(modifier = Modifier.height(8.dp))
+            for (i in 0..10) {
+                item {
+                    LazyRow {
+                        for (i in 0..20) {
+                            item {
+                                ItemCardView(index = i, Modifier.balance())
+                                Spacer(modifier = Modifier.height(8.dp))
+                            }
                         }
                     }
                 }
