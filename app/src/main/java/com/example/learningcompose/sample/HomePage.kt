@@ -23,7 +23,8 @@ fun Home(
     counter: () -> Unit,
     edit: () -> Unit,
     anim: () -> Unit,
-    coplexList: () -> Unit
+    coplexList: () -> Unit,
+    dragSample: () -> Unit,
 ) {
 
     rememberScrollState(0)
@@ -74,6 +75,11 @@ fun Home(
                 }
             }
 
+            item {
+                Button(onClick = dragSample, modifier = Modifier.padding(16.dp)) {
+                    Text("dragSample")
+                }
+            }
         }
     }
 

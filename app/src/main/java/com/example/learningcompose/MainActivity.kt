@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
@@ -19,6 +20,7 @@ import com.example.learningcompose.ui.theme.LearningComposeTheme
 val LocalActivity = staticCompositionLocalOf<Activity> { error("no activity") }
 
 class MainActivity : AppCompatActivity() {
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -45,6 +47,9 @@ class MainActivity : AppCompatActivity() {
                                         },
                                         coplexList = {
                                             navController.navigate("coplexList")
+                                        } ,
+                                        dragSample = {
+                                            navController.navigate("dragSample")
                                         }
                                     )
                                 }
@@ -87,6 +92,13 @@ class MainActivity : AppCompatActivity() {
                             Crossfade(targetState = "coplexList") {
                                 Surface(color = MaterialTheme.colors.background) {
                                     ComPlexList()
+                                }
+                            }
+                        }
+                        composable("dragSample") {
+                            Crossfade(targetState = "dragSample") {
+                                Surface(color = MaterialTheme.colors.background) {
+                                    DragSample()
                                 }
                             }
                         }
