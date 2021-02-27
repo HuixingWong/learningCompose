@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
@@ -28,7 +29,7 @@ fun DragSample() {
     val min = 0.dp
     val (minPx, maxPx) = with(LocalDensity.current) { min.toPx() to max.toPx() }
     // this is the  state we will update while dragging
-    val offsetPosition = remember {
+    val offsetPosition = rememberSaveable {
         mutableStateOf(0f)
     }
 
@@ -46,7 +47,8 @@ fun DragSample() {
             .background(Color.Black)
     ) {
         Box(
-            Modifier.offset { IntOffset(offsetPosition.value.roundToInt(), 0) }
+            Modifier
+                .offset { IntOffset(offsetPosition.value.roundToInt(), 0) }
                 .size(50.dp)
                 .background(Color.Red)
         )
