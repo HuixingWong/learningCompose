@@ -25,6 +25,7 @@ fun Home(
     anim: () -> Unit,
     coplexList: () -> Unit,
     dragSample: () -> Unit,
+    effectTest: () -> Unit
 ) {
 
     rememberScrollState(0)
@@ -78,6 +79,12 @@ fun Home(
             item {
                 Button(onClick = dragSample, modifier = Modifier.padding(16.dp)) {
                     Text("dragSample")
+                }
+            }
+
+            item {
+                Button(onClick = effectTest, modifier = Modifier.padding(16.dp)) {
+                    Text("effectTest")
                 }
             }
         }

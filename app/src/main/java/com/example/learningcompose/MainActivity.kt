@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -26,8 +27,9 @@ class MainActivity : AppCompatActivity() {
                 LearningComposeTheme {
                     // A surface container using the 'background' color from the theme
                     val navController = rememberNavController()
+                    val scope = rememberCoroutineScope()
                     NavHost(navController = navController, startDestination = "home") {
-                       myNavigation(navController)
+                       myNavigation(navController, scope)
                     }
                 }
             }

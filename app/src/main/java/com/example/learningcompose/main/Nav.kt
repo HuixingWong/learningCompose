@@ -4,14 +4,16 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import com.example.learningcompose.sample.*
+import kotlinx.coroutines.CoroutineScope
 
 @ExperimentalAnimationApi
-fun NavGraphBuilder.myNavigation(navController: NavController) {
+fun NavGraphBuilder.myNavigation(navController: NavController, scope: CoroutineScope?= null) {
     composable("home") {
         Crossfade(targetState = "home") {
             Surface(color = MaterialTheme.colors.background) {
@@ -33,6 +35,9 @@ fun NavGraphBuilder.myNavigation(navController: NavController) {
                     } ,
                     dragSample = {
                         navController.navigate("dragSample")
+                    },
+                    effectTest = {
+                        navController.navigate("effectTest")
                     }
                 )
             }
@@ -82,6 +87,13 @@ fun NavGraphBuilder.myNavigation(navController: NavController) {
         Crossfade(targetState = "dragSample") {
             Surface(color = MaterialTheme.colors.background) {
                 DragSample()
+            }
+        }
+    }
+    composable("effectTest") {
+        Crossfade(targetState = "effectTest") {
+            Surface(color = MaterialTheme.colors.background) {
+                EffectTest(scope = scope)
             }
         }
     }
