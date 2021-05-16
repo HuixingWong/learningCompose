@@ -4,10 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.learningcompose.ext.balance
@@ -25,17 +22,22 @@ fun EffectTest(scaffoldState: ScaffoldState = rememberScaffoldState(),
 
 @Composable
 fun Test3() {
-    val state = mutableStateOf(0)
+    var state by remember {
+        mutableStateOf(0)
+    }
     val scope = rememberCoroutineScope()
 
-    Text(text = state.value.toString(), Modifier.clickable {
-        scope.launch {
-            while (true){
-                delay(1000)
-                state.value++
+    Text(text = state.toString(),
+        Modifier
+            .clickable {
+                scope.launch {
+                    while (true) {
+                        delay(1000)
+                        state++
+                    }
+                }
             }
-        }
-    }.size(80.dp))
+            .size(80.dp))
 }
 
 
