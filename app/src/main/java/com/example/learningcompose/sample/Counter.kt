@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -27,28 +30,46 @@ fun Counter() {
     val context = LocalActivity.current
     Column(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(),
+                .fillMaxWidth()
+                .fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        LaunchedEffect(key1 = true) {
+            println("😂  launchEffect")
+        }
+
+        SideEffect {
+            println("😂  sideEffect")
+        }
+
+        DisposableEffect(key1 = true) {
+            println("😂  disposeEffect")
+            onDispose {
+                println("😂  disposeEffect dispose")
+            }
+        }
 
         Text(text = "Hello ${viewModel.amount}!",
                 color = Color.Black,
                 fontSize = 20.sp,
                 modifier = Modifier
-                        .background(Color.DarkGray)
-                        .padding(10.dp)
-                        .drawBehind {
-                            drawRect(Color.Red, size = Size(20f, 20f))
-                        }
-                        .drawWithContent {
-                            drawRect(Color.Black, topLeft = Offset(20f, 20f),
-                                    size = Size(20f, 20f))
-                            this.drawContent()
-                        }.clickable {
-                            showMessage(context, "haha")
-                        }
+                    .background(Color.DarkGray)
+                    .padding(10.dp)
+                    .drawBehind {
+                        drawRect(Color.Red, size = Size(20f, 20f))
+                    }
+                    .drawWithContent {
+                        drawRect(
+                            Color.Black, topLeft = Offset(20f, 20f),
+                            size = Size(20f, 20f)
+                        )
+                        this.drawContent()
+                    }
+                    .clickable {
+                        showMessage(context, "haha")
+                    }
         )
         Button(onClick = {
             viewModel.amountPlus()

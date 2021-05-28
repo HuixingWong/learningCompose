@@ -20,8 +20,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlin.math.ceil
 
 class MyBackend {
-    private val backendDataList = (0..100).toList().map { "[Item $it is from backend]" }
-    val DataBatchSize = 20
+    private val backendDataList = (0..200).toList().map { "[Item $it is from backend]" }
+    val DataBatchSize = 10
 
     class DesiredLoadResultPageResponse(
         val data: List<String>
@@ -48,8 +48,9 @@ class MyBackend {
         // Example from https://developer.android.com/reference/kotlin/androidx/paging/PagingSource
         return object : PagingSource<Int, String>() {
             override suspend fun load(params: LoadParams<Int>): LoadResult<Int, String> {
+                println("加载数据中")
                 // Simulate latency
-                delay(2000)
+                delay(300)
 
                 val pageNumber = params.key ?: 0
 
@@ -84,9 +85,11 @@ fun PagingBackendSample() {
     val pager = remember {
         Pager(
             PagingConfig(
+                initialLoadSize = 50,
                 pageSize = myBackend.DataBatchSize,
                 enablePlaceholders = true,
-                maxSize = 200
+                maxSize = 200,
+
             )
         ) { myBackend.getAllData() }
     }
@@ -98,7 +101,8 @@ fun PagingBackendSample() {
             item {
                 Text(
                     text = "Waiting for items to load from the backend",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
             }
@@ -111,7 +115,8 @@ fun PagingBackendSample() {
         if (lazyPagingItems.loadState.append == LoadState.Loading) {
             item {
                 CircularProgressIndicator(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
             }
