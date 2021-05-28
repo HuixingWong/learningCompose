@@ -21,6 +21,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.learningcompose.LocalActivity
 import com.example.learningcompose.viewmodel.CounterViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 
 @Composable
 fun Counter() {
@@ -49,11 +51,27 @@ fun Counter() {
             }
         }
 
-        produceState(initialValue = 1) {
-            awaitDispose {
-
+        /**
+         * produceState：将非 Compose 状态转换为 Compose 状态
+        produceState 会启动一个协程，该协程将作用域限定为可将值推送到返回的 State 的组合。
+        使用此协程将非 Compose 状态转换为 Compose 状态，例如将外部订阅驱动的状态（如 Flow、LiveData 或 RxJava）引入组合。
+        该制作工具在 produceState 进入组合时启动，在其退出组合时取消。返回的 State 冲突；设置相同的值不会触发重组。
+        即使 produceState 创建了一个协程，它也可用于观察非挂起的数据源。如需移除对该数据源的订阅，请使用 awaitDispose 函数。
+        以下示例展示了如何使用 produceState 从网络加载图像。
+        loadNetworkImage 可组合函数会返回可以在其他可组合项中使用的 State。
+         */
+        val pState by produceState(initialValue = 1L) {
+            flow {
+                while (true) {
+                    delay(1000)
+                    emit(System.currentTimeMillis())
+                }
+            }.collect {
+               value =  it
             }
         }
+
+        Text(text = pState.toString(), Modifier.background(Color.Green))
 
         derivedStateOf {
 
